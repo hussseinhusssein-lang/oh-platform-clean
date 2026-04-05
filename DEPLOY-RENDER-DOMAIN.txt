@@ -1,0 +1,21 @@
+نشر الموقع على Render:
+1) ارفع المشروع على GitHub.
+2) ادخل Render > New > Web Service.
+3) اختر المستودع.
+4) Build Command = npm install
+5) Start Command = npm start
+6) أضف Environment Variables:
+   DATABASE_URL=...
+   BASE_URL=https://your-service.onrender.com
+   SESSION_SECRET=...
+   OWNER_EMAIL=fahadcaocap@gmail.com
+   GOOGLE_CLIENT_ID=...
+   GOOGLE_CLIENT_SECRET=...
+   LOCAL_PAYMENT_NUMBER=0795674778
+7) بعد النشر، عدّل Google Redirect URI إلى:
+   https://your-service.onrender.com/auth/google/callback
+
+ربط دومين:
+1) اشتر دومين من Namecheap أو GoDaddy.
+2) من Render > Settings > Custom Domains.
+3) أضف الدومين واتبع سجلات DNS التي يعطيك إياها Render.
