@@ -1,39 +1,1072 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OH | منصة بيع جاهزة</title><link rel="stylesheet" href="/styles.css"></head><body>
-<div class="nav"><div class="brand brand-glow"><img src="/logo.svg" alt="OH"><span>OH</span></div><div class="menu"><a class="btn secondary" href="/">الرئيسية</a><a class="btn secondary" href="/pricing.html">الأسعار والدفع</a><a class="btn secondary" href="/how.html">طريقة الاستخدام</a><a class="btn secondary" href="/faq.html">FAQ</a><a class="btn secondary" href="/contact.html">تواصل معنا</a><a class="btn secondary hidden" id="adminReveal" href="/oh-control.html">لوحة الإدارة</a></div></div>
-<div class="container">
-  <div class="hero launch-hero">
-    <div class="card hero-copy">
-      <span class="badge">إطلاق نهائي • نسخة بيع قوية</span>
-      <h1 class="title launch-title">حل واجبات ومشاريع وشرح منظم داخل منصة واحدة</h1>
-      <p class="small hero-text">منصة OH توفر لك تجربة منظمة من أول تسجيل الدخول وحتى متابعة الطلب والردود. اختر الخطة المناسبة، أنشئ طلب الدفع المحلي، ارفع ملفك وإثبات التحويل، ثم تابع الحالة من داخل حسابك بشكل واضح ومرتب.</p>
-      <div class="menu" style="margin-top:16px"><a class="btn" id="startBtn" href="/login.html">ابدأ الآن</a><a class="btn secondary" href="/pricing.html">عرض الأسعار</a><a class="btn secondary" href="/consultations.html">طلب استشارة</a></div>
-      <div class="stats-grid launch-stats">
-        <div class="item center"><strong>3</strong><div class="small">طرق دفع محلية واضحة</div></div>
-        <div class="item center"><strong>24/7</strong><div class="small">استقبال الطلبات والاستشارات</div></div>
-        <div class="item center"><strong>لوحة واحدة</strong><div class="small">للدفع، المتابعة، الإشعارات، والردود</div></div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OH WORK | حل واجباتك بذكاء وسرعة</title>
+  <meta name="description" content="منصة OH WORK لحل الواجبات ورفع الملفات واستلام الحلول بسرعة ووضوح وبأسلوب احترافي." />
+  <style>
+    :root{
+      --bg:#050816;
+      --bg2:#0b1024;
+      --card:#0e142d;
+      --card2:#111938;
+      --line:rgba(255,255,255,.09);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.68);
+      --violet:#8b5cf6;
+      --violet2:#a855f7;
+      --cyan:#22d3ee;
+      --blue:#3b82f6;
+      --green:#22c55e;
+      --shadow:0 0 40px rgba(139,92,246,.22);
+      --radius:26px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,.16), transparent 23%),
+        radial-gradient(circle at 80% 10%, rgba(34,211,238,.10), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(59,130,246,.10), transparent 25%),
+        linear-gradient(180deg,#050816 0%, #070b1a 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:42px 42px;
+      opacity:.18;
+      z-index:0;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    .container{
+      width:min(1280px, calc(100% - 32px));
+      margin:auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(18px);
+      background:rgba(5,8,22,.74);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+
+    .brand-logo{
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      background:linear-gradient(135deg,var(--violet),var(--cyan));
+      box-shadow:0 0 26px rgba(139,92,246,.38);
+      color:white;
+    }
+
+    .brand-text h1{
+      margin:0;
+      font-size:23px;
+      letter-spacing:.5px;
+      font-weight:900;
+    }
+
+    .brand-text p{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      padding:14px 22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      color:#f3f4f6;
+      transition:.2s ease;
+      font-weight:600;
+      white-space:nowrap;
+    }
+
+    .nav a:hover{
+      transform:translateY(-1px);
+      border-color:rgba(139,92,246,.45);
+      box-shadow:0 0 22px rgba(139,92,246,.16);
+      background:rgba(255,255,255,.05);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:20px;
+      padding:15px 24px;
+      font-weight:800;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      color:white;
+      background:linear-gradient(90deg,var(--violet),var(--violet2),var(--cyan));
+      box-shadow:0 0 34px rgba(139,92,246,.35);
+    }
+    .btn-dark{
+      color:white;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+    }
+
+    .hero{
+      padding:42px 0 26px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(139,92,246,.28);
+      background:rgba(139,92,246,.10);
+      color:#ddd6fe;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .pill .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 14px rgba(34,211,238,.8);
+    }
+
+    .hero h2{
+      margin:0;
+      font-size:clamp(38px, 6vw, 78px);
+      line-height:1.12;
+      font-weight:950;
+      letter-spacing:-1.2px;
+    }
+
+    .hero .accent{
+      display:block;
+      background:linear-gradient(90deg,#c4b5fd 0%, #a78bfa 32%, #e879f9 58%, #67e8f9 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:22px 0 0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.9;
+    }
+
+    .feature-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .feature-pills .item{
+      padding:14px 18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#f8fafc;
+    }
+
+    .feature-pills .item span{
+      width:32px;height:32px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.16));
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+    }
+
+    .social-proof{
+      margin-top:22px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--muted);
+      font-size:15px;
+      flex-wrap:wrap;
+    }
+
+    .avatars{display:flex}
+    .avatar{
+      width:38px;height:38px;border-radius:50%;
+      border:2px solid #070b1a;
+      margin-right:-10px;
+      background:linear-gradient(135deg,var(--violet),var(--cyan));
+    }
+
+    .hero-preview{
+      position:relative;
+    }
+
+    .glow{
+      position:absolute;
+      inset:-20px;
+      background:linear-gradient(90deg, rgba(139,92,246,.22), rgba(34,211,238,.10));
+      filter:blur(40px);
+      z-index:0;
+      border-radius:40px;
+    }
+
+    .app-card{
+      position:relative;
+      z-index:1;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(15,20,43,.95), rgba(8,11,25,.98));
+      border-radius:32px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .app-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:16px;
+    }
+
+    .traffic{
+      display:flex;gap:8px
+    }
+    .traffic i{
+      display:block;width:11px;height:11px;border-radius:50%
+    }
+    .traffic i:nth-child(1){background:#fb7185}
+    .traffic i:nth-child(2){background:#fbbf24}
+    .traffic i:nth-child(3){background:#34d399}
+
+    .preview-grid{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:16px;
+    }
+
+    .sidebar{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.04);
+      padding:12px;
+    }
+
+    .side-item{
+      padding:14px 16px;
+      border-radius:18px;
+      color:#cbd5e1;
+      background:rgba(255,255,255,.02);
+      margin-bottom:10px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .side-item.active{
+      background:linear-gradient(90deg,rgba(139,92,246,.85),rgba(34,211,238,.58));
+      color:white;
+      box-shadow:0 0 24px rgba(139,92,246,.28);
+    }
+
+    .upload-card,
+    .result-card{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.04);
+      padding:20px;
+    }
+
+    .upload-result-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .section-title{
+      font-size:34px;
+      margin:0 0 10px;
+      font-weight:900;
+    }
+
+    .section-desc{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .dropzone{
+      min-height:230px;
+      margin-top:18px;
+      border-radius:24px;
+      border:2px dashed rgba(139,92,246,.35);
+      background:linear-gradient(180deg,#0b1024,#0a0f22);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .cloud{
+      width:86px;height:86px;border-radius:24px;
+      display:grid;place-items:center;
+      font-size:38px;
+      background:linear-gradient(135deg,rgba(139,92,246,.24),rgba(34,211,238,.17));
+      margin-bottom:14px;
+      box-shadow:0 0 25px rgba(139,92,246,.18);
+    }
+
+    .mini{
+      font-size:13px;
+      color:rgba(255,255,255,.50);
+      margin-top:8px;
+    }
+
+    .result-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(34,197,94,.13);
+      color:#86efac;
+      border:1px solid rgba(34,197,94,.22);
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .result-layout{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr 150px;
+      gap:14px;
+      align-items:start;
+    }
+
+    .doc-mock{
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:#0b1024;
+      min-height:250px;
+      padding:16px;
+    }
+
+    .line{
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      margin-bottom:12px;
+    }
+
+    .line.short{width:68%}
+    .line.medium{width:84%}
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .small-box{
+      height:62px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .brain{
+      border-radius:24px;
+      border:1px solid rgba(139,92,246,.22);
+      background:linear-gradient(180deg, rgba(139,92,246,.12), rgba(34,211,238,.08));
+      min-height:250px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+      font-size:72px;
+    }
+
+    .cta-link{
+      margin-top:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.04);
+      padding:18px 22px;
+      flex-wrap:wrap;
+    }
+
+    .cta-link strong{
+      font-size:clamp(24px, 4vw, 38px);
+      background:linear-gradient(90deg,#67e8f9,#c4b5fd);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:950;
+      letter-spacing:.5px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:24px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      padding:24px;
+      box-shadow:0 0 24px rgba(99,102,241,.06);
+    }
+
+    .card-icon{
+      width:58px;height:58px;border-radius:18px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(139,92,246,.24),rgba(34,211,238,.16));
+      border:1px solid rgba(139,92,246,.18);
+      font-size:26px;
+      margin-bottom:18px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:28px;
+      font-weight:900;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    .how-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:rgba(255,255,255,.04);
+      padding:26px;
+    }
+
+    .steps{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .step{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:#0b1024;
+      padding:18px;
+    }
+
+    .step-num{
+      width:66px;height:66px;border-radius:20px;
+      display:grid;place-items:center;
+      flex:0 0 66px;
+      background:linear-gradient(135deg,var(--violet),var(--cyan));
+      box-shadow:0 0 25px rgba(139,92,246,.25);
+      font-weight:950;
+      font-size:22px;
+    }
+
+    .step h4{
+      margin:2px 0 8px;
+      font-size:24px;
+      font-weight:900;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    .dashboard-top{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .stat{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#0b1024;
+      padding:18px;
+      text-align:center;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:36px;
+      color:#7dd3fc;
+      font-weight:950;
+      margin-bottom:6px;
+    }
+
+    .list{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .list-item{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#0b1024;
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .badge{
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .badge.ok{
+      background:rgba(34,197,94,.13);
+      color:#86efac;
+      border:1px solid rgba(34,197,94,.22);
+    }
+
+    .badge.wait{
+      background:rgba(251,191,36,.12);
+      color:#fde68a;
+      border:1px solid rgba(251,191,36,.22);
+    }
+
+    .final-cta{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:linear-gradient(90deg, rgba(139,92,246,.14), rgba(232,121,249,.10), rgba(34,211,238,.12));
+      padding:26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer{
+      margin-top:30px;
+      border-top:1px solid var(--line);
+      padding:28px 0 40px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:24px;
+    }
+
+    .footer h4{
+      margin:0 0 14px;
+      font-size:22px;
+      font-weight:900;
+    }
+
+    .footer p,.footer li,.footer a{
+      color:var(--muted);
+      line-height:2;
+      font-size:15px;
+    }
+
+    .footer ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .copyright{
+      margin-top:16px;
+      color:rgba(255,255,255,.42);
+      font-size:13px;
+      text-align:center;
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .how-grid{
+        grid-template-columns:1fr;
+      }
+      .preview-grid{
+        grid-template-columns:1fr;
+      }
+      .upload-result-wrap{
+        grid-template-columns:1fr;
+      }
+      .cards{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 760px){
+      .topbar-inner{
+        flex-direction:column;
+        align-items:stretch;
+        padding:14px 0;
+      }
+      .nav{
+        justify-content:flex-start;
+      }
+      .nav-actions{
+        justify-content:flex-start;
+      }
+      .cards{
+        grid-template-columns:1fr;
+      }
+      .dashboard-top{
+        grid-template-columns:1fr;
+      }
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .cta-link{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .hero p{
+        font-size:17px;
+      }
+      .result-layout{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-logo">OH</div>
+        <div class="brand-text">
+          <h1>OH WORK</h1>
+          <p>حل واجبات بذكاء وسرعة</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="how.html">كيف يعمل</a>
+        <a href="pricing.html">الأسعار</a>
+        <a href="contact.html">تواصل معنا</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-dark" href="login.html">حسابي</a>
+        <a class="btn btn-primary" href="submit.html">ابدأ الآن</a>
       </div>
     </div>
-    <div class="card hero-side">
-      <div class="logo-card"><img src="/logo.svg" alt="OH"><div><div class="section-title" style="margin-bottom:6px">هوية OH</div><div class="small">ستايل داكن فاخر، واجهة عربية نظيفة، وتجربة مناسبة للإعلان والبيع.</div></div></div>
-      <hr class="sep">
-      <div class="steps">
-        <div class="item step"><strong>أنشئ طلب الدفع</strong><div class="small">خذ الرقم المرجعي والمبلغ والرقم المعتمد فورًا.</div></div>
-        <div class="item step"><strong>حوّل واحتفظ بالإثبات</strong><div class="small">حوّل عبر CliQ أو ZainCash أو Orange Money ثم احتفظ بالصورة.</div></div>
-        <div class="item step"><strong>ارفع الملف وتابع التنفيذ</strong><div class="small">تابع آخر حالة وآخر تحديث والإشعارات من حسابك.</div></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">
+            <span class="dot"></span>
+            منصة حديثة لطلاب BTEC والمدارس
+          </div>
+
+          <h2>
+            حل واجباتك خلال
+            <span class="accent">دقائق مع الذكاء الاصطناعي</span>
+          </h2>
+
+          <p>
+            ارفع واجبك واحصل على حل كامل مع شرح واضح ومتابعة للحالة والردود داخل حسابك،
+            بتصميم سريع ومرتب وسهل للطلاب، من أول لحظة حتى استلام الملف النهائي.
+          </p>
+
+          <div class="feature-pills">
+            <div class="item"><span>⚡</span> سريع</div>
+            <div class="item"><span>🎯</span> دقيق</div>
+            <div class="item"><span>🛡️</span> آمن 100%</div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="submit.html">🚀 ارفع واجبك الآن</a>
+            <a class="btn btn-dark" href="how.html">اعرف المزيد</a>
+          </div>
+
+          <div class="social-proof">
+            <div class="avatars">
+              <div class="avatar"></div>
+              <div class="avatar"></div>
+              <div class="avatar"></div>
+              <div class="avatar"></div>
+              <div class="avatar"></div>
+            </div>
+            <span>انضم لطلاب كثير صاروا يعتمدوا علينا يوميًا</span>
+          </div>
+        </div>
+
+        <div class="hero-preview">
+          <div class="glow"></div>
+          <div class="app-card">
+            <div class="app-top">
+              <div class="brand">
+                <div class="brand-logo" style="width:40px;height:40px;border-radius:14px;">OH</div>
+                <div class="brand-text">
+                  <h1 style="font-size:18px">OH WORK</h1>
+                  <p>منصة حل واجبات ذكية</p>
+                </div>
+              </div>
+              <div class="traffic"><i></i><i></i><i></i></div>
+            </div>
+
+            <div class="preview-grid">
+              <aside class="sidebar">
+                <div class="side-item">الرئيسية</div>
+                <div class="side-item active">إرسال الملف</div>
+                <div class="side-item">الطلبات</div>
+                <div class="side-item">الإشعارات</div>
+                <div class="side-item">الاستشارات</div>
+                <div class="side-item">الأسعار</div>
+              </aside>
+
+              <div>
+                <div class="upload-result-wrap">
+                  <div class="upload-card">
+                    <h3 class="section-title">ارفع واجبك</h3>
+                    <p class="section-desc">واحصل على الحل خلال دقائق</p>
+
+                    <div class="dropzone">
+                      <div class="cloud">☁️</div>
+                      <div style="font-size:22px;font-weight:900">اسحب الملف هنا أو اضغط</div>
+                      <div class="mini">PDF, DOCX, JPG, PNG</div>
+                      <a href="submit.html" class="btn btn-primary" style="margin-top:18px">رفع الواجب</a>
+                    </div>
+                  </div>
+
+                  <div class="result-card">
+                    <span class="result-badge">الحل جاهز ✅</span>
+                    <h3 class="section-title" style="margin-top:14px">نتيجتك جاهزة</h3>
+                    <p class="section-desc">حل واضح وشرح مرتب وتحميل مباشر</p>
+
+                    <div class="result-layout">
+                      <div class="doc-mock">
+                        <div class="line short"></div>
+                        <div class="line"></div>
+                        <div class="line medium"></div>
+                        <div class="line short"></div>
+
+                        <div class="stats-grid">
+                          <div class="small-box"></div>
+                          <div class="small-box"></div>
+                          <div class="small-box"></div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width:100%;margin-top:16px">تحميل الملف</button>
+                      </div>
+
+                      <div class="brain">🧠</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cta-link">
+                  <div>
+                    <div style="font-size:14px;color:var(--muted)">رابط المنصة</div>
+                    <strong>oh-work.onrender.com</strong>
+                  </div>
+                  <button class="btn btn-dark" onclick="copySiteLink()">نسخ الرابط</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="grid grid-3" style="margin-top:22px">
-    <div class="card"><h2 class="section-title">كيف نعمل؟</h2><p class="small">شرح واضح للعملية من بداية الطلب حتى التسليم النهائي.</p><a class="btn secondary" href="/how.html">فتح الصفحة</a></div>
-    <div class="card"><h2 class="section-title">الأسئلة الشائعة</h2><p class="small">إجابات جاهزة للأسئلة المتكررة قبل أن يتواصل العميل.</p><a class="btn secondary" href="/faq.html">فتح الصفحة</a></div>
-    <div class="card"><h2 class="section-title">الدعم والتواصل</h2><p class="small">إذا واجهت أي مشكلة تواصل معنا مباشرة على واتساب أو إنستقرام.</p><a class="btn secondary" href="/contact.html">تواصل معنا</a></div>
-  </div>
-  <div class="grid grid-3" style="margin-top:22px">
-    <div class="card"><h2 class="section-title">لماذا يختارنا العملاء؟</h2><ul class="help-list small"><li>واجهة واضحة بدون لخبطة</li><li>دفع محلي سهل</li><li>متابعة حالة الطلب والردود من الحساب</li></ul></div>
-    <div class="card"><h2 class="section-title">آراء أولية</h2><div class="list"><div class="item"><strong>عميل 1</strong><div class="small">الخدمة مرتبة وسهلة والمتابعة واضحة.</div></div><div class="item"><strong>عميل 2</strong><div class="small">طرق الدفع مفهومة والدعم سريع.</div></div></div></div>
-    <div class="card"><h2 class="section-title">ملاحظة مهمة</h2><p class="small">وقت التسليم يعتمد على حجم الطلب. إذا رغبت بطلب مستعجل، يمكنك تفعيل خيار الاستعجال عند الإرسال.</p><a class="btn secondary" href="/policy.html">سياسة الاستخدام</a></div>
-  </div>
-</div>
-<a class="wa-float" target="_blank" href="https://wa.me/962775248389">واتساب</a>
-<div class="footer">OH التعليمية • Launch v6.1</div>
-<script src="/app.js"></script><script>OH.revealAdmin();OH.wireStartButton('#startBtn');</script></body></html>
+
+      <div class="container">
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">📄</div>
+            <h3>جميع أنواع الواجبات</h3>
+            <p>تقارير، عروض، برمجة، وأسئلة مع دعم واضح ومناسب لطبيعة الطالب.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⏱️</div>
+            <h3>استجابة فورية</h3>
+            <p>رفع سريع ومتابعة مباشرة للحالة حتى تعرف أين وصل طلبك بكل وضوح.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>ذكاء اصطناعي متقدم</h3>
+            <p>تحليل ذكي وشرح واضح يساعدك تفهم الحل بدل ما تستلم ملف وخلاص.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔒</div>
+            <h3>آمن وسري</h3>
+            <p>ملفاتك محفوظة وخصوصيتك مضمونة بشكل احترافي ومنظم داخل المنصة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container how-grid">
+      <div class="panel">
+        <h3 class="section-title">كيف يعمل الموقع؟</h3>
+        <p class="section-desc">ثلاث خطوات بسيطة توصلك للحل النهائي بطريقة مرتبة وواضحة.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h4>ارفع واجبك</h4>
+              <p>ارفع الصورة أو الملف بسهولة من خلال صفحة الإرسال.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h4>نحلله ونشتغل عليه</h4>
+              <p>يتم تحليل المطلوب وتجهيزه بشكل منظم وواضح وسريع.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h4>استلم الحل والشرح</h4>
+              <p>تأخذ الحل مع شرح واضح ومتابعة للحالة والردود داخل حسابك.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;gap:18px">
+        <div class="panel">
+          <h3 class="section-title">لوحة التحكم</h3>
+          <p class="section-desc">نظرة سريعة على حالة الطلبات والمتابعة داخل المنصة.</p>
+
+          <div class="dashboard-top">
+            <div class="stat">
+              <strong>12</strong>
+              <span>طلبات اليوم</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>قيد المراجعة</span>
+            </div>
+            <div class="stat">
+              <strong>8</strong>
+              <span>المكتملة</span>
+            </div>
+          </div>
+
+          <div class="list">
+            <div class="list-item">
+              <div>
+                <div style="font-weight:800">تقرير تسويق رقمي</div>
+                <div style="font-size:12px;color:var(--muted)">آخر تحديث قبل قليل</div>
+              </div>
+              <span class="badge ok">تم الحل</span>
+            </div>
+
+            <div class="list-item">
+              <div>
+                <div style="font-weight:800">برمجة بايثون</div>
+                <div style="font-size:12px;color:var(--muted)">آخر تحديث قبل قليل</div>
+              </div>
+              <span class="badge wait">قيد المراجعة</span>
+            </div>
+
+            <div class="list-item">
+              <div>
+                <div style="font-weight:800">تحليل بيانات</div>
+                <div style="font-size:12px;color:var(--muted)">آخر تحديث قبل قليل</div>
+              </div>
+              <span class="badge ok">تم الحل</span>
+            </div>
+
+            <div class="list-item">
+              <div>
+                <div style="font-weight:800">عرض تقديمي</div>
+                <div style="font-size:12px;color:var(--muted)">آخر تحديث قبل قليل</div>
+              </div>
+              <span class="badge wait">قيد المراجعة</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="final-cta">
+          <div>
+            <div style="font-size:34px;font-weight:950">ابدأ الآن وارفع واجبك</div>
+            <div style="margin-top:6px;color:var(--muted)">واجهة جاهزة، سريعة، وتخدم الطلاب بشكل واضح وفخم</div>
+          </div>
+          <a class="btn btn-primary" href="submit.html">ابدأ الآن</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <div class="brand-logo" style="width:42px;height:42px">OH</div>
+            <div class="brand-text">
+              <h1 style="font-size:20px">OH WORK</h1>
+              <p>منصة ذكية تساعد الطلاب يوميًا</p>
+            </div>
+          </div>
+          <p>
+            منصة حديثة تساعد الطلاب على رفع واجباتهم واستلام الحل بسرعة ووضوح وبشكل منظم واحترافي.
+          </p>
+        </div>
+
+        <div>
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="how.html">كيف يعمل</a></li>
+            <li><a href="pricing.html">الأسعار</a></li>
+            <li><a href="contact.html">الدعم</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>الخدمات</h4>
+          <ul>
+            <li>حل الواجبات</li>
+            <li>شرح الدروس</li>
+            <li>التقارير والعروض</li>
+            <li>البرمجة والتحليل</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li>support@oh-work.com</li>
+            <li>+962 7X XXX XXXX</li>
+            <li>متاحون يوميًا</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">© 2026 OH WORK - جميع الحقوق محفوظة</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function copySiteLink() {
+      const link = 'https://oh-work.onrender.com';
+      navigator.clipboard.writeText(link).then(() => {
+        alert('تم نسخ رابط الموقع');
+      }).catch(() => {
+        alert(link);
+      });
+    }
+  </script>
+</body>
+</html>

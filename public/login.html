@@ -1,1 +1,393 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>تسجيل الدخول | OH</title><link rel="stylesheet" href="/styles.css"></head><body><div class="nav"><div class="brand brand-glow">OH</div><div class="menu"><a class="btn secondary" href="/">الرئيسية</a><a class="btn secondary" href="/pricing.html">الأسعار والدفع</a></div></div><div class="container"><div class="hero"><div class="card"><span class="badge">OH التعليمية</span><h1 class="title">تسجيل دخول سريع وآمن</h1><p class="small">ادخل عبر Google فقط. إذا كان بريدك هو بريد المالك أو تمت ترقيتك إلى admin/helper، سيظهر لك الوصول الإداري تلقائيًا.</p><div class="notice" style="margin-top:16px">إذا ظهر خطأ من Google، تأكد من أن بريدك مضاف ضمن <strong>Test Users</strong> في Google Cloud وأنك تستخدم نفس البريد الموجود في الإعدادات.</div></div><div class="card center"><div class="kicker">Google Sign-In</div><h2 class="section-title">ابدأ من هنا</h2><p class="small">بمجرد الدخول سيتم إنشاء حسابك أو تحديثه تلقائيًا.</p><a class="btn full" href="/auth/google">الدخول عبر Google</a></div></div></div><div class="footer">OH التعليمية</div><script src="/app.js"></script><script>(async()=>{const me=await OH.getMe();if(me)location.href=['owner','admin','helper'].includes(me.role)?'/oh-control.html':'/dashboard.html';})();</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>تسجيل الدخول | OH WORK</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    :root{
+      --bg:#050816;
+      --line:rgba(255,255,255,.09);
+      --text:#fff;
+      --muted:rgba(255,255,255,.65);
+      --violet:#8b5cf6;
+      --violet2:#a855f7;
+      --cyan:#22d3ee;
+      --shadow:0 0 40px rgba(139,92,246,.22);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,.16), transparent 24%),
+        radial-gradient(circle at 80% 10%, rgba(34,211,238,.10), transparent 22%),
+        linear-gradient(180deg,#050816 0%, #070b1a 100%);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:42px 42px;
+      opacity:.18;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:min(1200px, calc(100% - 32px));
+      margin:18px auto;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border:1px solid var(--line);
+      background:rgba(5,8,22,.72);
+      backdrop-filter:blur(16px);
+      border-radius:24px;
+      padding:14px 18px;
+      box-shadow:0 0 30px rgba(139,92,246,.08);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      font-size:22px;
+    }
+
+    .brand img{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      box-shadow:0 0 20px rgba(139,92,246,.26);
+    }
+
+    .menu{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      border-radius:18px;
+      padding:13px 18px;
+      font-weight:800;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+
+    .btn.secondary{
+      color:#fff;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+
+    .layout{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .hero,.card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(15,20,43,.95), rgba(8,11,25,.98));
+      border-radius:32px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:-40px;
+      bottom:-40px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(139,92,246,.24), transparent 70%);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(139,92,246,.28);
+      background:rgba(139,92,246,.10);
+      color:#ddd6fe;
+      font-size:14px;
+      margin-bottom:18px;
+      font-weight:700;
+    }
+
+    .badge::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 14px rgba(34,211,238,.9);
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(34px,5vw,58px);
+      line-height:1.15;
+      font-weight:950;
+    }
+
+    .accent{
+      display:block;
+      background:linear-gradient(90deg,#c4b5fd 0%, #a78bfa 36%, #e879f9 66%, #67e8f9 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:18px 0 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.9;
+    }
+
+    .points{
+      display:grid;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .point{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:20px;
+      padding:16px;
+      color:#e5e7eb;
+    }
+
+    .section-title{
+      margin:0 0 8px;
+      font-size:34px;
+      font-weight:950;
+    }
+
+    .section-sub{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .input{
+      width:100%;
+      border:1px solid var(--line);
+      background:#0b1024;
+      color:#fff;
+      border-radius:20px;
+      padding:16px 18px;
+      outline:none;
+      font:inherit;
+      transition:.2s ease;
+    }
+
+    .input:focus{
+      border-color:rgba(139,92,246,.46);
+      box-shadow:0 0 0 3px rgba(139,92,246,.14);
+    }
+
+    .submit-btn{
+      width:100%;
+      border:none;
+      cursor:pointer;
+      border-radius:20px;
+      padding:16px 18px;
+      color:#fff;
+      font-weight:900;
+      font-size:16px;
+      background:linear-gradient(90deg,var(--violet),var(--violet2),var(--cyan));
+      box-shadow:0 0 26px rgba(139,92,246,.32);
+    }
+
+    .note{
+      border:1px solid rgba(139,92,246,.18);
+      background:rgba(139,92,246,.10);
+      color:#ddd6fe;
+      padding:14px 16px;
+      border-radius:18px;
+      line-height:1.8;
+      font-size:14px;
+      margin-top:14px;
+    }
+
+    .extra{
+      margin-top:14px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .extra a{
+      color:#c4b5fd;
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .spinner{
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.18);
+      border-top-color:#fff;
+      display:inline-block;
+      animation:spin .8s linear infinite;
+      vertical-align:middle;
+    }
+
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    .footer{
+      width:min(1200px, calc(100% - 32px));
+      margin:16px auto 28px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      text-align:center;
+      color:rgba(255,255,255,.42);
+      font-size:13px;
+    }
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 640px){
+      .menu{width:100%}
+      .menu .btn{flex:1 1 calc(50% - 10px)}
+      .hero,.card{padding:20px}
+      .section-title{font-size:28px}
+      .hero p{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <img src="/logo.svg" alt="OH">
+        <span>OH WORK</span>
+      </div>
+
+      <div class="menu">
+        <a class="btn secondary" href="/">الرئيسية</a>
+        <a class="btn secondary" href="/pricing.html">الأسعار</a>
+        <a class="btn secondary" href="/contact.html">تواصل معنا</a>
+      </div>
+    </div>
+
+    <div class="layout">
+      <section class="hero">
+        <div class="badge">دخول سريع وآمن</div>
+        <h1>
+          سجّل دخولك
+          <span class="accent">وتابع طلباتك بكل سهولة</span>
+        </h1>
+        <p>
+          من هنا تقدر تدخل إلى حسابك، تتابع الطلبات، تشوف الردود،
+          تراجع الإشعارات والدفعات، وتكمل استخدام المنصة بشكل مرتب وسريع.
+        </p>
+
+        <div class="points">
+          <div class="point">🔐 تسجيل دخول آمن وسريع</div>
+          <div class="point">📂 متابعة الملفات والطلبات</div>
+          <div class="point">💬 مراجعة الردود والإشعارات</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">تسجيل الدخول</h2>
+        <p class="section-sub">أدخل بياناتك للوصول إلى حسابك داخل المنصة.</p>
+
+        <form id="loginForm" class="list">
+          <input class="input" type="email" name="email" placeholder="البريد الإلكتروني" required>
+          <input class="input" type="password" name="password" placeholder="كلمة المرور" required>
+          <button class="submit-btn" id="loginBtn" type="submit">دخول</button>
+        </form>
+
+        <div class="note">
+          إذا ما عندك حساب بعد، أنشئ حساب جديد وابدأ استخدام الموقع مباشرة.
+        </div>
+
+        <div class="extra">
+          ما عندك حساب؟
+          <a href="/register.html">إنشاء حساب جديد</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">OH التعليمية</div>
+
+  <script src="/app.js"></script>
+  <script>
+    document.getElementById('loginForm').onsubmit = async (e) => {
+      e.preventDefault();
+
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>&nbsp; جارٍ تسجيل الدخول...';
+
+      try {
+        const body = Object.fromEntries(new FormData(e.target).entries());
+
+        await OH.api('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify(body)
+        });
+
+        OH.toast('تم تسجيل الدخول بنجاح', 'ok');
+        location.href = '/dashboard.html';
+      } catch (err) {
+        OH.toast(err.message || 'فشل تسجيل الدخول', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'دخول';
+      }
+    };
+  </script>
+</body>
+</html>
